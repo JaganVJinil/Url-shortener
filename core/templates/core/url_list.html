@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">My Shortened URLs</h2>
+
+    <form method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search by title or URL" value="{{ request.GET.q }}">
+            <button type="submit" class="btn btn-outline-secondary">Search</button>
+        </div>
+    </form>
+
+    {% if urls %}
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Original URL</th>
+                    <th>Short URL</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for url in urls %}
+                <tr>
+                    <td>{{ url.title }}</td>
+                    <td><a href="{{ url.original_url }}" target="_blank">{{ url.original_url }}</a></td>
+                    <td>
+                        <!-- Updated Short URL -->
+                        <a href="{% url 'redirect_short_url' url.short_url %}" target="_blank">
+                            {{ request.build_absolute_uri }}/{{ url.short_url }}
+                        </a>
+                    </td>
+                    <td>{{ url.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        <a href="{% url 'edit_url' url.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'delete_url' url.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <nav>
+            <ul class="pagination">
+                {% if urls.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?q={{ request.GET.q }}&page={{ urls.previous_page_number }}">Previous</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                {% endif %}
+
+                {% for page_num in urls.paginator.page_range %}
+                    {% if page_num == urls.number %}
+                        <li class="page-item active"><span class="page-link">{{ page_num }}</span></li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_num }}">{{ page_num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if urls.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?q={{ request.GET.q }}&page={{ urls.next_page_number }}">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    {% else %}
+        <p>No URLs found.</p>
+    {% endif %}
+
+    <a href="{% url 'add_url' %}" class="btn btn-success mt-4">Add New URL</a>
+</div>
+{% endblock %}
