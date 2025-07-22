@@ -1,7 +1,22 @@
 {% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+<style>
+    body {
+        background: url("{% static 'core/images/bgurllist.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    }
+</style>
+{% endblock %}
+
+
+
+
 {% block content %}
 <div class="container">
-    <h2 class="mb-4">My Shortened URLs</h2>
+    <h2 class="mb-4">URL List</h2>
 
     <form method="get" class="mb-4">
         <div class="input-group">
