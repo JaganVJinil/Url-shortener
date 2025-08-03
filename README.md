@@ -15,6 +15,20 @@ A simple web application built with Django and MySQL that allows users to shorte
 
 ---
 
+## My UI 
+
+### 🔐 Login Page
+![Login](screenshots/urlsh_login.png)
+
+### 📋 Urllist
+![Login](screenshots/urlsh_list.png)
+
+### 📋 Add
+![Login](screenshots/urlsh_add.png)
+
+### 📋 Edit
+![Login](screenshots/urlsh_edit.png)
+
 ## 🛠️ Tech Stack
 
 - **Backend:** Django
