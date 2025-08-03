@@ -1,0 +1,8 @@
+node.js 
+open source , cross platform java script runtime environment and library for running web applications outside the client's browser 
+
+used for creating client server side applications
+
+uses asynchronous event driven model,  which is perfect for data driven applications
+
+based on v8 engine, as our browser, uses JS as scripting language and archives high ouput via non blocking inputs and single threaded event loop

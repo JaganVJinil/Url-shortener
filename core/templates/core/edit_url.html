@@ -1,15 +1,27 @@
 {% extends 'core/base.html' %}
 
+{% load static %}
+
+
+{% block extra_css %}
+<style>
+    body {
+        background: url("{% static 'core/images/bgurllist.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container mt-5" style="max-width: 600px;">
     <h2 class="mb-4 text-center">Edit URL</h2>
 
-    <form method="post">
+    <form method="post"> 
         {% csrf_token %}
         
         {% for field in form %}
             <div class="mb-3">
-                <label class="form-label">{{ field.label_tag }}</label>
+                <label class="form-label"><strong>{{ field.label_tag }}</strong></label>
                 {{ field }}
                 {% if field.help_text %}
                     <div class="form-text">{{ field.help_text }}</div>

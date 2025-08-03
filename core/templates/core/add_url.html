@@ -26,7 +26,7 @@
         
         {% for field in form %}
             <div class="mb-3">
-                <label class="form-label">{{ field.label_tag }}</label>
+                <label class="form-label"><strong>{{ field.label_tag }}</strong></label>
                 {{ field }}
                 {% if field.help_text %}
                     <div class="form-text">{{ field.help_text }}</div>
