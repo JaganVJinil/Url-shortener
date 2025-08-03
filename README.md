@@ -23,10 +23,10 @@ A simple web application built with Django and MySQL that allows users to shorte
 ### 📋 Urllist
 ![Login](screenshots/urlsh_list.png)
 
-### 📋 Add
+### ➕ Add
 ![Login](screenshots/urlsh_add.png)
 
-### 📋 Edit
+### ✂️ Edit
 ![Login](screenshots/urlsh_edit.png)
 
 ## 🛠️ Tech Stack
